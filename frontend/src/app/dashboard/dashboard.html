@@ -1,0 +1,99 @@
+<div class="dashboard-container">
+
+    <!-- Header -->
+
+    <div class="hero">
+
+        <h1>🎓 Student Database Management</h1>
+
+    </div>
+
+    <!-- Dashboard -->
+
+    <div class="hero dashboard-box">
+
+        <h1>📊 Student Dashboard</h1>
+
+        <p>
+
+            Manage students, organize records and monitor your database efficiently.
+
+        </p>
+
+        <button
+
+            class="student-btn"
+
+            (click)="navigateToStudentslist()">
+
+            View Student List →
+
+        </button>
+
+    </div>
+<p>Students Length: {{ students.length }}</p>
+<p>Total Getter: {{ totalStudents }}</p>
+<p>Female Getter: {{ femaleStudents }}</p>
+<p>Male Getter: {{ maleStudents }}</p>
+    <!-- Cards -->
+
+    <div class="cards">
+
+        <div class="card total">
+
+            <div>
+
+                <h3>Total Students</h3>
+
+                <h1>{{ students.length }}</h1>
+
+            </div>
+
+            <span>🎓</span>
+
+        </div>
+
+        <div class="card active">
+
+            <div>
+
+                <h3>Active Students</h3>
+
+                <h1>{{ activeStudents }}</h1>
+
+            </div>
+
+            <span>✅</span>
+
+        </div>
+
+        <div class="card female">
+
+            <div>
+
+                <h3>Female Students</h3>
+
+                <h1>{{ students.filter(s => s.gender?.trim().toLowerCase() ==='female').length }}</h1>
+            </div>
+
+            <span>👩</span>
+
+        </div>
+
+        <div class="card male">
+
+            <div>
+
+                <h3>Male Students</h3>
+
+                <h1>{{ maleStudents }}</h1>
+
+            </div>
+
+            <span>👨</span>
+
+        </div>
+
+    </div>
+
+</div>

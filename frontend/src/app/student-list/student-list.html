@@ -1,0 +1,172 @@
+<div class="main-content">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+    <h1>Student Record's</h1>
+
+    <div class="header-buttons">
+
+        <button
+        class="deleted-btn"
+        routerLink="/deleted-students">
+
+        🗑 Deleted Students
+
+        </button>
+
+        <button
+        class="add-btn"
+        routerLink="/add-student">
+
+        + Add Student
+
+        </button>
+
+    </div>
+
+</div>
+
+
+    <!-- CARDS -->
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Students</h3>
+            <h1>{{students.length}}</h1>
+        </div>
+
+        <div class="card">
+            <h3>Filtered Students</h3>
+            <h1>{{filteredStudents.length}}</h1>
+        </div>
+
+        <div class="card">
+            <h3>Current Page</h3>
+            <h1>{{currentPage}}</h1>
+        </div>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="filter-section">
+
+        <input
+        type="text"
+        placeholder="Search Name / Email / Phone"
+        [(ngModel)]="searchText"
+        (input)="applyFilters()">
+
+        <select
+        [(ngModel)]="selectedClass"
+        (change)="applyFilters()">
+
+            <option value="">
+                All Classes
+            </option>
+
+            <option>B.E CSE</option>
+            <option>MEC</option>
+            <option>B.Tech CSE</option>
+            <option>B.Tech IT</option>
+            <option>B.E Civil</option>
+            <option>B.E ECE</option>
+
+        </select>
+
+    </div>
+
+
+    <!-- TABLE -->
+
+    <div class="table-box">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Class</th>
+                    <th>Gender</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr *ngFor="let s of paginatedStudents; let i=index">
+                      
+                    <td>{{s.id}}</td>
+                    <td>{{s.name}}</td>
+                    <td>{{s.email}}</td>
+                    <td>{{s.phone}}</td>
+                    <td>{{s.class}}</td>
+                    <td>{{s.gender}}</td>
+
+                    <td>
+
+                        <button
+                        class="edit-btn"
+                        (click)="edit(s)">
+                        Edit
+                        </button>
+
+                        <button
+                        class="delete-btn"
+                        (click)="delete(s.id)">
+                        Delete
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- PAGINATION -->
+
+    <div class="pagination">
+
+        <button
+        (click)="previousPage()"
+        [disabled]="currentPage===1">
+
+        Previous
+
+        </button>
+
+        <span>
+
+        Page {{currentPage}}
+        of
+        {{totalPages()}}
+
+        </span>
+
+        <button
+        (click)="nextPage()"
+        [disabled]="currentPage===totalPages()">
+
+        Next
+
+        </button>
+
+    </div>
+
+</div>

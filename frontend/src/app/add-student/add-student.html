@@ -1,0 +1,89 @@
+<div class="container">
+
+  <div class="card">
+
+    <h1>
+      {{editMode ? 'Edit Student' : 'Add Student'}}
+    </h1>
+
+    <div class="form-group">
+      <label>Name</label>
+
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Enter student name"
+        [(ngModel)]="student.name">
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter email"
+        [(ngModel)]="student.email">
+    </div>
+
+    <div class="form-group">
+      <label>Phone</label>
+
+      <input
+        type="text"
+        id="phone"
+        name="phone"
+        placeholder="Enter phone number"
+        [(ngModel)]="student.phone">
+    </div>
+
+    <div class="form-group">
+
+      <label>Class</label>
+
+      <select
+        id="class"
+        name="class"
+        [(ngModel)]="student.class">
+
+        <option value="">Select Class</option>
+        <option>B.E CSE</option>
+        <option>B.Tech CSE</option>
+        <option>B.Tech IT</option>
+        <option>B.E Civil</option>
+        <option>B.E ECE</option>
+
+      </select>
+
+    </div>
+
+    <div class="form-group">
+
+      <label>Gender</label>
+
+      <select
+        id="gender"
+        name="gender"
+        [(ngModel)]="student.gender">
+
+        <option value="">Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+
+      </select>
+
+    </div>
+
+    <button
+      class="save-btn"
+      (click)="saveStudent()">
+
+      {{editMode ? 'Update Student' : 'Save Student'}}
+
+    </button>
+
+  </div>
+
+</div>

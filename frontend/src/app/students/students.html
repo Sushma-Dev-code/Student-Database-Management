@@ -1,0 +1,162 @@
+<div class="container">
+
+ 
+  <!-- MAIN -->
+  <div class="main-content">
+
+    <!-- HEADER -->
+    <div class="header">
+
+      <h1>Student Database Management</h1>
+
+      <button class="add-btn" (click)="saveStudent()">
+
+        {{ editId ? 'Update Student' : 'Add Student' }}
+
+      </button>
+
+    </div>
+
+    <!-- CARDS -->
+    <div class="cards">
+
+      <div class="card">
+        <h3>Total Students</h3>
+        <h1>{{ students.length }}</h1>
+      </div>
+
+      <div class="card">
+        <h3>Filtered Students</h3>
+        <h1>{{ filteredStudents.length }}</h1>
+      </div>
+
+      <div class="card">
+        <h3>Current Page</h3>
+        <h1>{{ currentPage }}</h1>
+      </div>
+
+    </div>
+
+    <!-- FORM -->
+    <div class="form-box">
+
+      <input placeholder="Name" [(ngModel)]="student.name">
+      <input placeholder="Email" [(ngModel)]="student.email">
+      <input placeholder="Phone" [(ngModel)]="student.phone">
+      <!--<input placeholder="Class" [(ngModel)]="student.class">-->
+      <select [(ngModel)]="student.class">
+        <option value=""disabled Selected>Select Class</option>
+        <option value="B.E CSE">B.E CSE</option>
+        <option value="MEC">MEC</option>
+        <option value="B.Tech CSE ">B.Tech CSE</option>
+        <option value="B.Tech IT">B.Tech IT</option>
+        <option value="B.E Civil">B.E Civil</option>
+        <option value="B.E ECE">B.E ECE</option>
+      </select>
+
+      <select [(ngModel)]="student.gender">
+        <option value=""disabled Selected>Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+      </select>
+
+    </div>
+
+    <!-- SEARCH + FILTER -->
+    <div class="filter-section">
+
+      <input
+        type="text"
+        placeholder="Search Student Name / Email/ Phone"
+        [(ngModel)]="searchText"
+        (input)="applyFilters()"
+      >
+
+      <select
+        [(ngModel)]="selectedClass"
+        (change)="applyFilters()"
+      >
+        <option value="">All Classes</option>
+        <option>B.Tech CSE</option>
+        <option>B.Tech IT</option>
+        <option>B.E Civil</option>
+        <option>B.E ECE</option>
+      </select>
+
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-box">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Class</th>
+            <th>Gender</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <!--paginatedStudents -->
+          <tr *ngFor="let s of paginatedStudents">
+
+            <td>{{ s.id }}</td>
+            <td>{{ s.name }}</td>
+            <td>{{ s.email }}</td>
+            <td>{{ s.phone }}</td>
+            <td>{{ s.class }}</td>
+            <td>{{ s.gender }}</td>
+
+            <td>
+
+              <button class="edit-btn" (click)="edit(s)">
+                Edit
+              </button>
+
+              <button class="delete-btn" (click)="delete(s.id)">
+                Delete
+              </button>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="pagination">
+
+      <button
+        (click)="previousPage()"
+        [disabled]="currentPage === 1"
+      >
+        Previous
+      </button>
+
+      <span>
+        Page {{ currentPage }} of {{ totalPages() }}
+      </span>
+
+      <button
+        (click)="nextPage()"
+        [disabled]="currentPage === totalPages()"
+      >
+        Next
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
